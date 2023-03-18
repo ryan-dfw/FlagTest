@@ -9,5 +9,14 @@ body {
 }
 
 canvas {
-    border: 1px solid black;
+    padding-top: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+h4 {
+    margin: 0;
+    padding: 0;
 }
