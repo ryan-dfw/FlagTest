@@ -91,13 +91,24 @@ var numFlags;
 var filename; 
 var country_name;
 var inputTextField = document.getElementById("guess");
+inputTextField.addEventListener('input', updateGuessTable)
 
 var score, seen;
 
 
 var currentFlag = 0;
 
+function updateGuessTable(evt) {
+    console.log(this.value);
+}
+
 function progressList() {
+
+    if (inputTextField.value == "") {
+        alert("You need to type a country name!");
+        return 
+    }
+
     console.clear()
     console.log("button press");
     console.log("1: " + inputTextField.value);
