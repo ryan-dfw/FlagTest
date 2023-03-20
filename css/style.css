@@ -10,6 +10,7 @@ body {
 
 canvas {
     padding-top: 20px;
+    /* border: 1px solid black; */
 }
 
 h1 {

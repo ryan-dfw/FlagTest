@@ -4,6 +4,9 @@ const IMG_HEIGHT = 160;
 const FOLDER_PATH = "./assets/png/"
 var canvas = document.getElementById("myCanvas");
 var context = canvas.getContext("2d");
+var proceedBtn = document.getElementById('proceedBtn');
+proceedBtn.addEventListener("click", progressList)
+var answer = document.getElementById("answer");
 var imgs = ['af.png', 'ax.png', 'al.png', 'dz.png', 'as.png', 'ad.png', 'ao.png', 
             'ai.png', 'aq.png', 'ag.png', 'ar.png', 'am.png', 'aw.png', 'au.png', 
             'at.png', 'az.png', 'bs.png', 'bh.png', 'bd.png', 'bb.png', 'by.png', 
@@ -81,6 +84,30 @@ var names = ['Afghanistan', 'Åland Islands', 'Albania', 'Algeria', 'American Sa
             'Vanuatu', 'Vatican City', 'Venezuela', 'Vietnam', 'British Virgin Islands', 'United States Virgin Islands', 
             'Wales', 'Wallis and Futuna', 'Western Sahara', 'Yemen', 'Zambia', 'Zimbabwe'];
 
+var session_names = [];
+var session_img = [];
+var numFlags;
+
+var filename; 
+var country_name;
+
+
+var currentFlag = 0;
+
+function progressList() {
+    console.log("button press");
+    currentFlag++;
+    if (currentFlag >= numFlags) {
+        console.log("YOU'RE DONE")
+        canvas.style.display = "hidden";
+        // GO TO NEXT PAGE
+        return 
+    }
+    filename = session_img[currentFlag];
+    country_name = session_names[currentFlag];
+    drawFlag(filename);
+    answer.innerText = country_name;
+}
 function drawFlag(filename) {
     // Place image on the canvas
     var img = new Image();
@@ -95,12 +122,12 @@ function drawFlag(filename) {
 $(document).ready(function(){
     // Clear the canvas
     context.clearRect(0, 0, canvas.width, canvas.height);
-    var session_img = [];
-    var session_names = [];
+    session_img = [];
+    session_names = [];
 
     // import data from imgs, names, into per-session randomized list to iterate thru later
-    var imgsLength = imgs.length;
-    for (let i = 0; i < imgsLength; i++) {
+    numFlags = imgs.length;
+    for (let i = 0; i < numFlags; i++) {
         const randomIndex = Math.floor(Math.random() * imgs.length);
         const movingImg = imgs[randomIndex];
         const movingName = names[randomIndex];
@@ -115,13 +142,13 @@ $(document).ready(function(){
     console.log("session_img: " + session_img.length);
     console.log("session_names: " + session_names.length);
 
-    var filename = imgs[randomIndex]
-    var country_name = names[randomIndex]
+    currentFlag = 0;
 
-    // drawFlag(filename)
+    filename = session_img[currentFlag]
+    country_name = session_names[currentFlag]
+
+    drawFlag(filename)
     // console.log("Drawing " + filename)
-
-    // var answer = document.getElementById("answer");
-    // answer.innerText = country_name;
+    answer.innerText = country_name;
 
 });
