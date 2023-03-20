@@ -90,12 +90,30 @@ var numFlags;
 
 var filename; 
 var country_name;
+var inputTextField = document.getElementById("guess");
+
+var score, seen;
 
 
 var currentFlag = 0;
 
 function progressList() {
+    console.clear()
     console.log("button press");
+    console.log("1: " + inputTextField.value);
+    console.log("2: " + answer.innerText);
+    if (inputTextField.value.toLowerCase() == answer.innerText.toLowerCase()) {
+        console.log("you're smart")
+        score++
+    } else {
+        console.log("you dumb idiot")
+    }
+    seen++
+    console.log("your score is " + score + "; you've seen " + seen + " flags so far.");
+    
+    // should clear the text value
+    inputTextField.value = null
+
     currentFlag++;
     if (currentFlag >= numFlags) {
         console.log("YOU'RE DONE")
@@ -124,6 +142,8 @@ $(document).ready(function(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     session_img = [];
     session_names = [];
+    score = 0;
+    seen = 0;
 
     // import data from imgs, names, into per-session randomized list to iterate thru later
     numFlags = imgs.length;
