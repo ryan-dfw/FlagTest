@@ -100,39 +100,56 @@ var currentFlag = 0;
 
 function updateGuessTable(evt) {
     console.log(this.value);
-    var userInput = this.value
+    var userInput = this.value.toLowerCase();
 
     // Iterate over names
     var possibleGuesses = []
 
-    console.log(session_names.length)
-    console.log(session_names)
-
     for (let i = 0; i < session_names.length; i++) {
 
-        console.log("I've entered the loop!");
-
         // See if countryname starts with userInput
-        currentCountry = session_names[i];
+        currentCountry = session_names[i].toLowerCase();
 
         if (currentCountry.startsWith(userInput)) {
-            console.log("Match");
             possibleGuesses.push(currentCountry);
-        } else {
-            console.log("No Match");
-        }
+        } 
     }
+
+    
 
     // if the length of the list is > 5 guesses, reduce the size of the list to five
     if (possibleGuesses.length > 5) {
         possibleGuesses = possibleGuesses.slice(0, 5);
     }
-    console.log("possibleGuesses: " + possibleGuesses)
-    var possibleGuess1 = possibleGuesses[0]
-    var possibleGuess2 = possibleGuesses[1]
-    var possibleGuess3 = possibleGuesses[2]
-    var possibleGuess4 = possibleGuesses[3]
-    var possibleGuess5 = possibleGuesses[4]
+    console.log("possibleGuesses DOWN TO 5: " + possibleGuesses)
+
+
+
+
+    // Loop over all elem in possibleGuesses
+    // for (var i = possibleGuesses.length - 1; i >= 0; i--) {
+    //     console.log("i: " + i + ", value: " + possibleGuesses[i]);
+    // }
+
+    // Clear all <tr> elements out of the <table>
+    var table = document.getElementById("autocomplete");
+
+    while (table.firstChild) {
+        table.removeChild(table.firstChild);
+    }
+
+    
+
+    // for (guess of possibleGuesses) {
+        
+    // }
+
+
+    // var possibleGuess1 = possibleGuesses[0]
+    // var possibleGuess2 = possibleGuesses[1]
+    // var possibleGuess3 = possibleGuesses[2]
+    // var possibleGuess4 = possibleGuesses[3]
+    // var possibleGuess5 = possibleGuesses[4]
 }
 
 function progressList() {
