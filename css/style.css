@@ -103,3 +103,20 @@ input[type=submit] {
     background-color: DodgerBlue !important; 
     color: #ffffff; 
 }
+
+/* Score Report colors */
+.bad-score {
+    color: red;
+}
+
+.medium-score {
+    color: orange;
+}
+
+.good-score {
+    color: green;
+}
+
+#answer {
+    display: none;
+}
