@@ -132,11 +132,36 @@ function updateGuessTable(evt) {
         var td_elem = document.createElement("td");
 
         td_elem.textContent = guess;
-        td_elem.className = "hi";
+        td_elem.className = "suggestion";
 
         tr_elem.appendChild(td_elem);
         table.appendChild(tr_elem);
     }
+
+    var suggestions = document.getElementsByClassName("suggestion");
+    for (let i = 0; i < suggestions.length; i++) {
+        var currentSuggestion = suggestions[i];
+        currentSuggestion.addEventListener("click", function() {
+            populateTextField(suggestions, i);
+        });
+    }
+}
+
+function populateTextField(suggestionList, index) {
+    // Set input field value to selected value
+    document.getElementById("guess").value = suggestionList[index].innerText;
+
+    // Click progress button
+    progressList();
+
+    // Empty the table
+    var table = document.getElementById("autocomplete");
+    while (table.firstChild) {
+        table.removeChild(table.firstChild);
+    }
+
+    // Shift focus to input field
+    document.getElementById("guess").focus()
 }
 
 function progressList() {
@@ -173,6 +198,12 @@ function progressList() {
     country_name = session_names[currentFlag];
     drawFlag(filename);
     answer.innerText = country_name;
+
+    // Draw the number of flags remaining
+    remainReport();
+}
+function remainReport() {
+    document.getElementById("remnant").innerHTML = "only " + (session_names.length - seen) + " flags remain";
 }
 function drawFlag(filename) {
     // Place image on the canvas
@@ -218,5 +249,7 @@ $(document).ready(function(){
     drawFlag(filename)
     // console.log("Drawing " + filename)
     answer.innerText = country_name;
+
+    remainReport();
 
 });
