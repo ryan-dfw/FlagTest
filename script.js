@@ -115,41 +115,28 @@ function updateGuessTable(evt) {
         } 
     }
 
-    
-
     // if the length of the list is > 5 guesses, reduce the size of the list to five
     if (possibleGuesses.length > 5) {
         possibleGuesses = possibleGuesses.slice(0, 5);
     }
-    console.log("possibleGuesses DOWN TO 5: " + possibleGuesses)
-
-
-
-
-    // Loop over all elem in possibleGuesses
-    // for (var i = possibleGuesses.length - 1; i >= 0; i--) {
-    //     console.log("i: " + i + ", value: " + possibleGuesses[i]);
-    // }
 
     // Clear all <tr> elements out of the <table>
     var table = document.getElementById("autocomplete");
-
     while (table.firstChild) {
         table.removeChild(table.firstChild);
     }
 
-    
+    // Populate table
+    for (guess of possibleGuesses) {
+        var tr_elem = document.createElement("tr");
+        var td_elem = document.createElement("td");
 
-    // for (guess of possibleGuesses) {
-        
-    // }
+        td_elem.textContent = guess;
+        td_elem.className = "hi";
 
-
-    // var possibleGuess1 = possibleGuesses[0]
-    // var possibleGuess2 = possibleGuesses[1]
-    // var possibleGuess3 = possibleGuesses[2]
-    // var possibleGuess4 = possibleGuesses[3]
-    // var possibleGuess5 = possibleGuesses[4]
+        tr_elem.appendChild(td_elem);
+        table.appendChild(tr_elem);
+    }
 }
 
 function progressList() {
