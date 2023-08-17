@@ -1,1 +1,1 @@
-it's gonna be a thing where you look at flags and see if you know them
+A simple website to host a quiz to track how many national flags a user knows.
