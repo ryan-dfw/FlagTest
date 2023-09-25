@@ -1,4 +1,3 @@
-// Globals
 const IMG_WIDTH = 300;
 const IMG_HEIGHT = 160;
 const FOLDER_PATH = "./assets/png/";
