@@ -1,29 +1,24 @@
-document.addEventListener("DOMContentLoaded", function() {
-
-var button5 = document.getElementById("select5Btn");
-var button20 = document.getElementById("select20Btn");
-var button100 = document.getElementById("select100Btn");
-var buttonAll = document.getElementById("selectAllBtn");
-
+const startBtn = document.querySelector("#startBtn");
+document.addEventListener("DOMContentLoaded", function () {
+    const buttonContainer = document.getElementById("buttonContainer");
     let numFlags = 5;
 
-    button5.addEventListener("click", function() {
-    numFlags = 5;
-});
-button20.addEventListener("click", function() {
-    numFlags = 20;
-});
-button100.addEventListener("click", function() {
-    numFlags = 100;
-});
-buttonAll.addEventListener("click", function() {
-    numFlags = 207;
-});
+    buttonContainer.addEventListener("click", function (event) {
+        const target = event.target;
+        numFlags = target.id === "select5Btn"
+            ? 5
+            : target.id === "select20Btn"
+                ? 20
+                : target.id === "select100Btn"
+                    ? 100
+                    : target.id === "selectAllBtn"
+                        ? 207
+                        : numFlags;
+    });
 
-    const startBtn = document.getElementById("startBtn");
-    startBtn.addEventListener("click", function() {
+    startBtn.addEventListener("click", function () {
         let encodedNumFlags = encodeURIComponent(numFlags.toString());
         window.location.href = "test.html?numFlags=" + encodedNumFlags;
+    });
 });
 
-});
