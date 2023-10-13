@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 : target.id === "select100Btn"
                     ? 100
                     : target.id === "selectAllBtn"
-                        ? 207
+                        ? 206
                         : numFlags;
     });
 
