@@ -8,9 +8,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 100vh;
     background-color: var(--bkg_black);
+}
+
+.post-nav-spacer {
+    height: 100px;
 }
 
 canvas {
@@ -51,6 +55,27 @@ td:hover {
 
 td:active {
     background-color: #aaa;
+}
+
+.text-input {
+    width: 40vw;
+    min-width: 350px;
+}
+
+.guess-input {
+    background-color: #000000;
+    color: white;
+    box-shadow: 0 0 50px #0d6efd;
+}
+
+.guess-input::placeholder {
+    color: #d3d4d5;
+}
+
+.guess-input:focus {
+    background-color: #00041f;
+    color: white;
+    box-shadow: 0 0 5px #0d6efd;
 }
 
 input {
@@ -96,7 +121,6 @@ input[type="submit"] {
     border-bottom: none;
     border-top: none;
     z-index: 99;
-    /*position the autocomplete items to be the same width as the container:*/
     top: 100%;
     left: 0;
     right: 0;

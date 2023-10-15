@@ -37,16 +37,19 @@
         </div>
     </div>
 </nav>
+<div class="post-nav-spacer"></div>
 
 <canvas
         height="160px"
         id="myCanvas"
         width="300px"></canvas>
 
-<label for="guess">Guess:</label>
-<input
-        id="guess"
-        type="text"/>
+<div class="input-group mb-3 text-input">
+    <label for="guess"></label>
+    <input aria-describedby="text-input1" aria-label="FlagGuessTextInput" class="form-control guess-input" id="guess"
+           placeholder="Guess"
+           type="text">
+</div>
 <table id="autocomplete"></table>
 <br/>
 <button id="proceedBtn">proceed</button>
