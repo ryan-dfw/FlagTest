@@ -105,9 +105,10 @@ input[type="submit"] {
     border-radius: 0 0 3% 3%;
 }
 
-#navbar-index-subtitle {
-    position: relative;
-    left: 23%;
+#navbar-index-subtitle, #remnant {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .suggestion {
