@@ -107,7 +107,18 @@ input[type="submit"] {
 
 #navbar-index-subtitle {
     position: relative;
-    left: 29%;
+    left: 23%;
+}
+
+.suggestion {
+    background-color: #00041f;
+    border: 1px solid DodgerBlue;
+    color: #dbdbf8;
+}
+
+.suggestion:hover {
+    background-color: steelblue;
+    color: white;
 }
 
 .autocomplete {
@@ -117,7 +128,7 @@ input[type="submit"] {
 
 .autocomplete-items {
     position: absolute;
-    border: 1px solid #d4d4d4;
+    border: 1px solid DodgerBlue;
     border-bottom: none;
     border-top: none;
     z-index: 99;
