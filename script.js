@@ -91,7 +91,6 @@ const imgs = [
     "iq.png",
     "ie.png",
     "im.png",
-    "il.png",
     "it.png",
     "jm.png",
     "jp.png",
