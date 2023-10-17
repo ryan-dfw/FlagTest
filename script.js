@@ -433,47 +433,35 @@ proceedBtn.addEventListener("click", progressList);
 inputTextField.addEventListener("input", updateGuessTable);
 document.addEventListener("DOMContentLoaded", function () {
     const subtitleElement = document.getElementById("navbar-index-subtitle");
-
-    // Get the selected number of flags from the URL
     const urlParams = new URLSearchParams(window.location.search);
     const encodedNumFlags = urlParams.get("numFlags");
     const numFlags = decodeURIComponent(encodedNumFlags);
-
-    // Update the subtitle based on the selected number of flags
     subtitleElement.textContent = `Testing ${numFlags} flags...`;
 });
 
 function updateGuessTable(evt) {
     console.log(this.value);
-    var userInput = this.value.toLowerCase();
+    let userInput = this.value.toLowerCase();
 
     // Iterate over names
-    var possibleGuesses = [];
-
+    let possibleGuesses = [];
     for (let i = 0; i < full_name_list.length; i++) {
-        // See if countryname starts with userInput
-        currentCountry = full_name_list[i].toLowerCase();
-
-        if (currentCountry.startsWith(userInput)) {
-            possibleGuesses.push(currentCountry);
-        }
+        const currentCountry = full_name_list[i].toLowerCase();
+        currentCountry.startsWith(userInput) ? possibleGuesses.push(currentCountry) : null;
     }
-
-    // if the length of the list is > 5 guesses, reduce the size of the list to five
-    if (possibleGuesses.length > 5) {
-        possibleGuesses = possibleGuesses.slice(0, 5);
-    }
+    possibleGuesses.length > 5 ? possibleGuesses = possibleGuesses.slice(0, 5) : null;
 
     // Clear all <tr> elements out of the <table>
-    var table = document.getElementById("autocomplete");
+    let table = document.getElementById("autocomplete");
     while (table.firstChild) {
         table.removeChild(table.firstChild);
     }
 
     // Populate table
+    let guess;
     for (guess of possibleGuesses) {
-        var tr_elem = document.createElement("tr");
-        var td_elem = document.createElement("td");
+        let tr_elem = document.createElement("tr");
+        let td_elem = document.createElement("td");
 
         td_elem.textContent = guess;
         td_elem.className = "suggestion";
@@ -482,9 +470,9 @@ function updateGuessTable(evt) {
         table.appendChild(tr_elem);
     }
 
-    var suggestions = document.getElementsByClassName("suggestion");
+    let suggestions = document.getElementsByClassName("suggestion");
     for (let i = 0; i < suggestions.length; i++) {
-        var currentSuggestion = suggestions[i];
+        let currentSuggestion = suggestions[i];
         currentSuggestion.addEventListener("click", function () {
             populateTextField(suggestions, i);
         });
