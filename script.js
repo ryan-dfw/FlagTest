@@ -547,7 +547,6 @@ $(document).ready(function () {
     const encodedNumFlags = urlParams.get("numFlags");
     const numFlags = decodeURIComponent(encodedNumFlags);
 
-    // Clear the canvas
     context.clearRect(0, 0, canvas.width, canvas.height);
     session_img = [];
     session_names = [];
@@ -558,25 +557,16 @@ $(document).ready(function () {
         const randomIndex = Math.floor(Math.random() * imgs.length);
         const movingImg = imgs[randomIndex];
         const movingName = names[randomIndex];
-        // append to the list which is session_img the current movingImg
         session_img.push(movingImg);
         session_names.push(movingName);
-        //remove the used ones
         imgs.splice(randomIndex, 1);
         names.splice(randomIndex, 1);
     }
 
-    console.log("session_img: " + session_img.length);
-    console.log("session_names: " + session_names.length);
-
     currentFlag = 0;
-
     filename = session_img[currentFlag];
     country_name = session_names[currentFlag];
-
     drawFlag(filename);
-    // console.log("Drawing " + filename)
     answer.innerText = country_name;
-
     remainReport();
 });
