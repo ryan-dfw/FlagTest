@@ -1,3 +1,5 @@
+// noinspection JSUnresolvedReference
+
 const IMG_WIDTH = 300;
 const IMG_HEIGHT = 160;
 const FOLDER_PATH = "./assets/png/";
@@ -439,7 +441,7 @@ document.addEventListener("DOMContentLoaded", function () {
     subtitleElement.textContent = `Testing ${numFlags} flags...`;
 });
 
-function updateGuessTable(evt) {
+function updateGuessTable() {
     console.log(this.value);
     let userInput = this.value.toLowerCase();
 
@@ -451,7 +453,6 @@ function updateGuessTable(evt) {
     }
     possibleGuesses.length > 5 ? possibleGuesses = possibleGuesses.slice(0, 5) : null;
 
-    // Clear all <tr> elements out of the <table>
     let table = document.getElementById("autocomplete");
     while (table.firstChild) {
         table.removeChild(table.firstChild);
@@ -487,7 +488,7 @@ function populateTextField(suggestionList, index) {
     progressList();
 
     // Empty the table
-    var table = document.getElementById("autocomplete");
+    const table = document.getElementById("autocomplete");
     while (table.firstChild) {
         table.removeChild(table.firstChild);
     }
@@ -497,42 +498,26 @@ function populateTextField(suggestionList, index) {
 }
 
 function progressList() {
-    if (inputTextField.value == "") {
+    if (inputTextField.value === "") {
         alert("You need to type a country name!");
         return;
     }
-
-    console.clear();
-    console.log("button press");
-    console.log("1: " + inputTextField.value);
-    console.log("2: " + answer.innerText);
-    if (inputTextField.value.toLowerCase() == answer.innerText.toLowerCase()) {
-        score++;
-    }
+    inputTextField.value.toLowerCase() === answer.innerText.toLowerCase() ? score++ : null;
     seen++;
-    console.log(
-        "your score is " + score + "; you've seen " + seen + " flags so far."
-    );
-
-    // should clear the text value
     inputTextField.value = null;
-
     currentFlag++;
     if (currentFlag >= numFlags) {
         console.log("YOU'RE DONE");
         canvas.style.display = "hidden";
-        // GO TO NEXT PAGE
         return;
     }
     filename = session_img[currentFlag];
     country_name = session_names[currentFlag];
     drawFlag(filename);
     answer.innerText = country_name;
-
-    // Draw the number of flags remaining
     remainReport();
 
-    if (seen == session_names.length) {
+    if (seen === session_names.length) {
         let total = session_names.length;
         window.location.href =
             "score.html?numFlags=" +
@@ -548,8 +533,7 @@ function remainReport() {
 }
 
 function drawFlag(filename) {
-    // Place image on the canvas
-    var img = new Image();
+    const img = new Image();
     img.src = FOLDER_PATH + filename;
     img.width = IMG_WIDTH;
     img.height = IMG_HEIGHT;
@@ -559,9 +543,9 @@ function drawFlag(filename) {
 }
 
 $(document).ready(function () {
-    var urlParams = new URLSearchParams(window.location.search);
-    var encodedNumFlags = urlParams.get("numFlags");
-    var numFlags = decodeURIComponent(encodedNumFlags);
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedNumFlags = urlParams.get("numFlags");
+    const numFlags = decodeURIComponent(encodedNumFlags);
 
     // Clear the canvas
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -570,8 +554,6 @@ $(document).ready(function () {
     score = 0;
     seen = 0;
 
-    // import data from imgs, names, into per-session randomized list to iterate thru later
-    // numFlags = imgs.length;
     for (let i = 0; i < numFlags; i++) {
         const randomIndex = Math.floor(Math.random() * imgs.length);
         const movingImg = imgs[randomIndex];
