@@ -1,4 +1,3 @@
-// noinspection JSUnresolvedReference
 $(document).ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
     const encodedNumFlags = urlParams.get("numFlags");
